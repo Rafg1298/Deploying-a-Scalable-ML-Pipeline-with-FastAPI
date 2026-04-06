@@ -13,9 +13,9 @@ from ml.model import (
     train_model,
 )
 # TODO: load the cencus.csv data
-project_path = os.path.dirname(os.path.abspath(__file__))
-data_path = os.path.join(project_path, "data", "census.csv")    
-print(data_path)    
+project_path = os.getcwd()
+data_path = os.path.join(project_path, "data", "census.csv")
+print(data_path)
 data = pd.read_csv(data_path)
 
 # TODO: split the provided data to have a train dataset and a test dataset
@@ -66,10 +66,10 @@ model = load_model(
 ) 
 
 # TODO: use the inference function to run the model inferences on the test dataset.
-inf = inference(model, X_test)
+preds = inference(model, X_test)
 
 # Calculate and print the metrics
-p, r, fb = compute_model_metrics(y_test, inf)
+p, r, fb = compute_model_metrics(y_test, preds)
 print(f"Precision: {p:.4f} | Recall: {r:.4f} | F1: {fb:.4f}")
 
 # TODO: compute the performance on model slices using the performance_on_categorical_slice function

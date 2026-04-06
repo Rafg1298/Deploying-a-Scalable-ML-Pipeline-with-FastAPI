@@ -22,8 +22,6 @@ def train_model(X_train, y_train):
     """
     # TODO: implement the function
     mod = RandomForestClassifier(
-        n_estimators=100,
-        max_depth=10,
         random_state=42
     )
     mod.fit(X_train, y_train)
@@ -67,8 +65,8 @@ def inference(model, X):
         Predictions from the model.
     """
     # TODO: implement the function
-    inf = model.predict(X)
-    return inf
+    preds = model.predict(X)
+    return preds
 
 def save_model(model, path):
     """ Serializes model to a file.
@@ -138,6 +136,6 @@ def performance_on_categorical_slice(
         training=False,
         encoder= encoder,
     )
-    inf = inference(model, X_slice)
-    precision, recall, fbeta = compute_model_metrics(y_slice, inf)
+    preds = inference(model, X_slice)
+    precision, recall, fbeta = compute_model_metrics(y_slice, preds)
     return precision, recall, fbeta
